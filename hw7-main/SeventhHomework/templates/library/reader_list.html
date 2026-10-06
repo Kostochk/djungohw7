@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список читачів</title>
+</head>
+<body>
+    <h1>Список усіх читачів бібліотеки</h1>
+
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="padding: 8px;">Ім'я та Прізвище</th>
+                <th style="padding: 8px;">Телефон</th>
+                <th style="padding: 8px;">Email</th>
+                <th style="padding: 8px;">Дія</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reader in readers %}
+            <tr>
+                <td style="padding: 8px;">{{ reader.first_name }} {{ reader.last_name }}</td>
+                <td style="padding: 8px;">{{ reader.phone }}</td>
+                <td style="padding: 8px;">{{ reader.email }}</td>
+                <td style="padding: 8px;">
+                    <a href="{% url 'reader_detail' reader.pk %}">Переглянути взяті книги</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" style="padding: 8px; text-align: center;">Читачів поки немає в базі даних.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{% url 'book_list' %}">Перейти до списку книг</a>
+</body>
+</html>

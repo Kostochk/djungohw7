@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <title>Профіль читача</title>
+</head>
+<body>
+    <h1>Читач: {{ reader.first_name }} {{ reader.last_name }}</h1>
+    <p><strong>Телефон:</strong> {{ reader.phone }}</p>
+    <p><strong>Email:</strong> {{ reader.email }}</p>
+    <p><strong>Дата реєстрації:</strong> {{ reader.registration_date }}</p>
+
+    <h2>Книги, які взяв читач (Завдання 3):</h2>
+    <ul>
+        {% for book in borrowed_books %}
+            <li><strong>"{{ book.title }}"</strong> — {{ book.author }} ({{ book.publication_year }} р.)</li>
+        {% empty %}
+            <li>Цей читач зараз не має взятих книг.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'reader_list' %}">Назад до списку читачів</a>
+</body>
+</html>
